@@ -1,0 +1,37 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped" *ngIf="challenge.gameArray && challenge.gameArray.length">
+                <thead>
+                    <tr class="info">
+                        <th>PLAY</th>
+                        <th>GAME NUMBER</th>
+                        <th>PLAYER</th>
+                        <th>SCORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let g of challenge.gameArray'>
+                        <td><a [routerLink]="['/challenges', g.challengeId, 'games', g.gameId]">{{g.gameId}}</a></td>
+                        <td>{{g.gameNumber}}</td>
+                        <td>{{g.playerName}}</td>
+                        <td>{{g.grandTotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div *ngFor='let g of challenge.gameArray' class="col-lg-4 col-md-6 col-sm-12">
+        <yz-singlegame [challengeId]='g.challengeId' [gameId]='g.gameId' [game]='g'>
+        </yz-singlegame>
+    </div>
+</div>

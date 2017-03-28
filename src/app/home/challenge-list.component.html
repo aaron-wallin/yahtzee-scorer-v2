@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive col-lg-12 container-fluid">
+            <table class="table table-striped" *ngIf="challenges && challenges.length">
+                <thead>
+                    <tr class="info">
+                        <th>CHALLENGE CODE</th>
+                        <th>DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let c of challenges'>
+                        <td><a [routerLink]="['/challenges', c.challengeId]">{{c.challengeId}}</a></td>
+                        <td>{{c.challengeDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
