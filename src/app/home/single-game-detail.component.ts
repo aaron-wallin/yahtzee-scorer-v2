@@ -16,9 +16,9 @@ import { Subscriber } from 'rxjs/Subscriber';
 })
 
 export class SingleGameDetail implements OnInit {
-    pageTitle: string = 'Game';
-    @Input() game: Game = new Game("");
-    errorWarningMessage: string = "";
+    pageTitle = 'Game';
+    @Input() game: Game = new Game('');
+    errorWarningMessage = '';
     @Input() challengeId: string;
     @Input() gameId: string;
     saveInProgress: boolean;
@@ -29,11 +29,11 @@ export class SingleGameDetail implements OnInit {
         this.challengeId = this._routeParams.snapshot.params['cid'];
         this.gameId = this._routeParams.snapshot.params['gid'];
 
-        this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
+        this.pageTitle = this.game.challengeId + ' / ' + this.game.playerName + ' [' + this.game.gameNumber + ']';
     }
 
     OnInit(): void {
-        this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
+        this.pageTitle = this.game.challengeId + ' / ' + this.game.playerName + ' [' + this.game.gameNumber + ']';
     }
 
     saveGame(): void {
@@ -68,22 +68,19 @@ export class SingleGameDetail implements OnInit {
     }
 
     internalSaveGame(): void {
-        if (this.saveInProgress) return;
+        if (this.saveInProgress) { return; }
         this.saveInProgress = true;
         Observable.interval(2000).take(1)._do(() => { this.saveGame(); this.saveInProgress = false; }).subscribe();
     }
 
     ngOnInit(): void {
-       // if (this.game.gameId === "") {
-            this._firebaseService.getGame(this.challengeId, this.gameId).subscribe(
-                g => {
-                    this.game = g;
-                    this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
-                },
-                error => console.log("***ERROR ON ngOnInit Single-Game_Detail***:" + error)
-            );
-        //}
-
-        this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
+        this._firebaseService.getGame(this.challengeId, this.gameId).subscribe(
+            g => {
+                this.game = g;
+                this.pageTitle = this.game.challengeId + ' / ' + this.game.playerName + ' [' + this.game.gameNumber + ']';
+            },
+            error => console.log('***ERROR ON ngOnInit Single-Game_Detail***:' + error)
+        );
+        this.pageTitle = this.game.challengeId + ' / ' + this.game.playerName + ' [' + this.game.gameNumber + ']';
     }
 }

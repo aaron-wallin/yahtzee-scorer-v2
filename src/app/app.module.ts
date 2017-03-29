@@ -34,8 +34,24 @@ import { ChallengesComponent } from './home/challenges.component';
 import { ChallengeDetailComponent } from './home/challenge-detail.component';
 import { SingleGameDetail } from './home/single-game-detail.component';
 import { ChallengeListComponent } from './home/challenge-list.component';
+import { AuthService} from './user/auth.service';
 
 import {appRoutes} from './routes';
+
+import {AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
+
+const myFirebaseConfig = {
+  apiKey: 'AIzaSyDMHOTkcH6poblzQfi8SpreHMLm52Hqpl4',
+  authDomain: 'yahtzeechallenge.firebaseapp.com',
+  databaseURL: 'https://yahtzeechallenge.firebaseio.com',
+  storageBucket: 'yahtzeechallenge.appspot.com',
+  messagingSenderId: '342189699352'
+};
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Google,
+  method: AuthMethods.Redirect
+};
 
 @NgModule({
 
@@ -43,7 +59,8 @@ import {appRoutes} from './routes';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes) ],
+    RouterModule.forRoot(appRoutes) ,
+    AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)],
   declarations: [
     AppComponent,
     NewChallengeComponent,
@@ -51,6 +68,9 @@ import {appRoutes} from './routes';
     ChallengeDetailComponent,
     SingleGameDetail,
     ChallengeListComponent ],
+  providers: [
+    AuthService
+  ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
