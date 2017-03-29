@@ -23,29 +23,29 @@ export class AppModule { }
 */
 
 import './rxjs-extensions';
-import { NgModule }      from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { RouterModule} from "@angular/router";
-import { FormsModule } from "@angular/forms";
-import { HttpModule } from "@angular/http";
-import { AppComponent }  from "./app.component";
-import { NewChallengeComponent } from "./home/new-challenge.component";
-import { ChallengesComponent } from "./home/challenges.component";
-import { ChallengeDetailComponent } from "./home/challenge-detail.component";
-import { SingleGameDetail } from "./home/single-game-detail.component";
-import { ChallengeListComponent } from "./home/challenge-list.component";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule} from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { AppComponent } from './app.component';
+import { NewChallengeComponent } from './home/new-challenge.component';
+import { ChallengesComponent } from './home/challenges.component';
+import { ChallengeDetailComponent } from './home/challenge-detail.component';
+import { SingleGameDetail } from './home/single-game-detail.component';
+import { ChallengeListComponent } from './home/challenge-list.component';
 
-import {appRoutes} from "./routes";
+import {appRoutes} from './routes';
 
 @NgModule({
 
   imports:      [
     BrowserModule,
     FormsModule,
-    HttpModule, 
+    HttpModule,
     RouterModule.forRoot(appRoutes) ],
   declarations: [
-    AppComponent, 
+    AppComponent,
     NewChallengeComponent,
     ChallengesComponent,
     ChallengeDetailComponent,

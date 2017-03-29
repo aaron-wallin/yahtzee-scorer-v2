@@ -8,7 +8,7 @@ import {FirebaseService} from '../services/firebase.service';
 })
 
 export class ChallengeListComponent implements OnInit {
-    pageTitle: string = 'Yahtzee Challenges';
+    pageTitle = 'Yahtzee Challenges';
     challenges: Challenge[] = [];
 
     constructor(private _firebaseService: FirebaseService) {}

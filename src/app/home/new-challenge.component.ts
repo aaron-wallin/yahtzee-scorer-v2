@@ -26,20 +26,17 @@ export class NewChallengeComponent implements OnInit {
     }
 
     createChallenge(): void {
-        this.errorWarningMessage = "";
+        this.errorWarningMessage = '';
 
-        if(this.challenge.players.length == 0)
-        {
-            this.errorWarningMessage = "There are no players in the list.";
+        if(this.challenge.players.length == 0) {
+            this.errorWarningMessage = 'There are no players in the list.';
             return;
         }
 
-        if(this.challenge.players.length > 0)
-        {
-            for (let p of this.challenge.players) {
-                if(p.length == 0)
-                {
-                    this.errorWarningMessage = "There's at least one player in the list without a name.";
+        if (this.challenge.players.length > 0) {
+            for (const p of this.challenge.players) {
+                if (p.length == 0) {
+                    this.errorWarningMessage = 'There\'s at least one player in the list without a name.';
                     return;
                 }
             }
@@ -47,32 +44,33 @@ export class NewChallengeComponent implements OnInit {
 
         this.challenge.numberOfGames = 3;
 
-        for(let p of this.challenge.players) {
-            for (var _i = 1; _i <= this.challenge.numberOfGames; _i++) {
-                var g = new Game(this.challenge.challengeId);
+        for (let p of this.challenge.players) {
+            for (let _i = 1; _i <= this.challenge.numberOfGames; _i++) {
+                let g = new Game(this.challenge.challengeId);
                 g.playerName = p;
                 g.gameNumber = _i;
-                g.gameId = g.playerName.toLowerCase().replace(" ", "") + g.gameNumber.toString()
+                g.gameId = g.playerName.toLowerCase().replace(' ', '') + g.gameNumber.toString()
                 this.challenge.games[g.gameId] = g;
             }
         }
 
         this._firebaseService.setChallenge(this.challenge).subscribe(
-            c => {this.challenge = c; this.routeToDetail();},
+            c => { this.challenge = c; this.routeToDetail(); },
             error => console.log(error)
         );
     }
 
     routeToDetail(): void {
-        this._router.navigate(['/challenges',{id: this.challenge.challengeId}]);
+        this._router.navigate(['/challenges',{ id: this.challenge.challengeId }]);
     }
 
     generateNewChallengeId(): string {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let text = '';
+        const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-        for( var i=0; i < 7; i++ )
+        for (let i = 0; i < 7; i++ ) {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
 
         return text;
     }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Challenge} from '../models/challenge';
 import {Game} from '../models/game';
 import {FirebaseService} from '../services/firebase.service';
-import  {Routes, ActivatedRoute, Router,} from '@angular/router';
+import {Routes, ActivatedRoute, Router} from '@angular/router';
 import {SingleGameDetail} from '../home/single-game-detail.component';
 
 @Component({
@@ -11,15 +11,15 @@ import {SingleGameDetail} from '../home/single-game-detail.component';
 })
 
 export class ChallengeDetailComponent implements OnInit {
-    pageTitle: string = 'New Game';
+    pageTitle = 'New Game';
     challenge: Challenge = new Challenge();
     createChallengeResponse: string;
-    errorWarningMessage: string = "";
+    errorWarningMessage = "";
 
     constructor(private _firebaseService: FirebaseService,
                 private _routeParams: ActivatedRoute) {
-            let id = this._routeParams.snapshot.params['id'];
-            this.pageTitle = "Yahtzee Challenge " + id;
+            const id = this._routeParams.snapshot.params['id'];
+            this.pageTitle = 'Yahtzee Challenge ' + id;
             this.challenge.challengeId = id;
     }
 
@@ -28,16 +28,15 @@ export class ChallengeDetailComponent implements OnInit {
                 c => this.challenge = this.loadChallenge(c),
                 error => console.log("***ERROR ON ngOnInit ChallengeListComponent***:" + error)
                 );
-    }    
+    }
 
     private loadChallenge(c: Challenge): Challenge {
-        var _challenge = new Challenge();
+        let _challenge = new Challenge();
         _challenge = c;
         _challenge.gameArray = [];
-    
         Object.keys(_challenge.games).forEach(
              (id) => {
-                 var value = _challenge.games[id];
+                 const value = _challenge.games[id];
                  _challenge.gameArray.push(value);
             });
 

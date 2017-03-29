@@ -47,5 +47,5 @@ import {appRoutes} from './routes';
 })
 
 export class AppComponent {
-    pageTitle: string = 'Yahtzee Challenge';
+    pageTitle = 'Yahtzee Challenge';
 }

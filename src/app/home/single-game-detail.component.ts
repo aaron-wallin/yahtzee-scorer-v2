@@ -12,6 +12,7 @@ import { Subscriber } from 'rxjs/Subscriber';
     selector: 'yz-singlegame',
     templateUrl: '../home/single-game-detail.component.html',
     providers: [FirebaseService],
+    styleUrls: ['../shared/singlegamedetail.component.css']
 })
 
 export class SingleGameDetail implements OnInit {
@@ -28,11 +29,11 @@ export class SingleGameDetail implements OnInit {
         this.challengeId = this._routeParams.snapshot.params['cid'];
         this.gameId = this._routeParams.snapshot.params['gid'];
 
-        this.pageTitle = "Yahtzee Challenge: " + this.challengeId + " Game: " + this.gameId;
+        this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
     }
 
     OnInit(): void {
-        this.pageTitle = "Yahtzee Challenge: " + this.challengeId + " Game: " + this.gameId;
+        this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
     }
 
     saveGame(): void {
@@ -73,16 +74,16 @@ export class SingleGameDetail implements OnInit {
     }
 
     ngOnInit(): void {
-
-        if (this.game.gameId === "") {
+       // if (this.game.gameId === "") {
             this._firebaseService.getGame(this.challengeId, this.gameId).subscribe(
                 g => {
                     this.game = g;
+                    this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
                 },
                 error => console.log("***ERROR ON ngOnInit Single-Game_Detail***:" + error)
             );
-        }
+        //}
 
-        this.pageTitle = "Yahtzee Challenge: " + this.challengeId + " Game: " + this.gameId;
+        this.pageTitle = this.game.challengeId + " / " + this.game.playerName + " [" + this.game.gameNumber + "]";
     }
 }
