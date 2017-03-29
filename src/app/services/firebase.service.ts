@@ -7,7 +7,7 @@ import {Game} from '../models/game';
 @Injectable()
 export class FirebaseService {
 
-    private _baseUrl: string = "https://yahtzeechallenge.firebaseio.com";
+    private _baseUrl = 'https://yahtzeechallenge.firebaseio.com';
 
     constructor(private _http: Http) {}
 
@@ -39,17 +39,17 @@ export class FirebaseService {
     saveSingleGame(game: Game){
         const body = JSON.stringify(game);
         console.log(body);
-        return this._http.put('https://yahtzeechallenge.firebaseio.com/challenges/' + game.challengeId + '/games/' + game.gameId + '/.json', body)
-            .map(response => response.json());
+        return this._http.put('https://yahtzeechallenge.firebaseio.com/challenges/' +
+                                game.challengeId + '/games/' + game.gameId + '/.json', body)
+                                .map(response => response.json());
     }
 
-    convertAllChallengesToArray(response: any) : Challenge[] {
-        var data = <{string, Challenge;}>response.json();
-        
-        var challengeArray = [];
-       Object.keys(data).forEach(
+    convertAllChallengesToArray(response: any): Challenge[] {
+        const data = <{ string, Challenge; }>response.json();
+        const challengeArray = [];
+           Object.keys(data).forEach(
              challengeId => {
-                var value = data[challengeId];
+                const value = data[challengeId];
                 challengeArray.push(value);
             });
 
@@ -57,7 +57,7 @@ export class FirebaseService {
     }
 
     writeJsonString(data: any) {
-        console.log("All: " + JSON.stringify(data));
+        console.log('All: ' + JSON.stringify(data));
     }
 
     private handleError(error: Response) {
