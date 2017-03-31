@@ -54,10 +54,12 @@ export class NewChallengeComponent implements OnInit {
             }
         }
 
-        this._firebaseService.setChallenge(this.challenge).subscribe(
+        this._firebaseService.setChallenge(this.challenge);
+        /* .subscribe(
             c => { this.challenge = c; this.routeToDetail(); },
             error => console.log(error)
-        );
+
+        );*/
     }
 
     routeToDetail(): void {

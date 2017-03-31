@@ -37,10 +37,11 @@ export class SingleGameDetail implements OnInit {
     }
 
     saveGame(): void {
-        this._firebaseService.saveSingleGame(this.game).subscribe(
-            c => { let x = c; },
-            error => console.log(error)
-        );
+        this._firebaseService.saveSingleGame(this.game);
+        //this._firebaseService.saveSingleGame(this.game).subscribe(
+        //    c => { let x = c; },
+        //    error => console.log(error)
+        //);
     }
 
     calcUpperTotal(): void {

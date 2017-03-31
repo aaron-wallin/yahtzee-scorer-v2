@@ -13,44 +13,58 @@ export class FirebaseService {
 
     constructor(private _http: Http, private _af: AngularFire) {}
 
-    //test(challenge: Challenge) {
-    //    const authBackend = new Auth
-    //    const auth = new AngularFireAuth(;
-    //}
-
     setChallenge(challenge: Challenge) {
-        //alert((this._af.auth | async)?.uid)
+        const body = JSON.stringify(challenge);
+        const jsonObj = JSON.parse(body);
+        this._af.database.object('challenges/' + challenge.challengeId).set(jsonObj);
+
+        /*
         const body = JSON.stringify(challenge);
         return this._http.put(this._baseUrl + '/challenges/' + challenge.challengeId + '.json', body)
             .map(response => response.json());
+            */
     }
 
     getChallenge(challengeId: string): Observable<Challenge> {
+        return this._af.database.object('challenges/' + challengeId);
+
+        /*
         return this._http.get(this._baseUrl + '/challenges/' + challengeId  + '/.json')
             .map((response: Response) => { return <Challenge>response.json(); });
+            */
     }
 
     getChallenges(): Observable<Challenge[]> {
+        return this._af.database.list('challenges');
+
+        /*
         return this._http.get(this._baseUrl + '/challenges.json')
                         .map((response: Response) => { return this.convertAllChallengesToArray(response)})
                         .do(data => this.writeJsonString(data))
                         .catch(this.handleError);
+                        */
     }
 
     getGame(challengeId: string, gameId: string): Observable<Game> {
+        return this._af.database.object('challenges/' + challengeId  + '/games/' + gameId);
+
+        /*
         return this._http.get(this._baseUrl + '/challenges/' + challengeId  + '/games/' + gameId + '/.json')
                         .map((response: Response) => { return <Game>response.json()})
                         .do(data => this.writeJsonString(data))
                         .catch(this.handleError);
+                        */
     }
 
     saveSingleGame(game: Game) {
-        this._af.auth.login();
-        const body = JSON.stringify(game);
-        console.log(body);
-        return this._http.put(this._baseUrl + '/challenges/' +
+        this._af.database.object('/challenges/' + game.challengeId + '/games/' + game.gameId).set(game);
+
+        /* const body = JSON.stringify(game);
+         console.log(body);
+         return this._http.put(this._baseUrl + '/challenges/' +
                                 game.challengeId + '/games/' + game.gameId + '/.json', body)
                                 .map(response => response.json());
+                                */
     }
 
     convertAllChallengesToArray(response: any): Challenge[] {
