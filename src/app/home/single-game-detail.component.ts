@@ -24,7 +24,7 @@ export class SingleGameDetail implements OnInit {
     saveInProgress: boolean;
 
     constructor(private _firebaseService: FirebaseService,
-        private _routeParams: ActivatedRoute) {
+                private _routeParams: ActivatedRoute) {
 
         this.challengeId = this._routeParams.snapshot.params['cid'];
         this.gameId = this._routeParams.snapshot.params['gid'];
@@ -38,15 +38,15 @@ export class SingleGameDetail implements OnInit {
 
     saveGame(): void {
         this._firebaseService.saveSingleGame(this.game);
-        //this._firebaseService.saveSingleGame(this.game).subscribe(
+        // this._firebaseService.saveSingleGame(this.game).subscribe(
         //    c => { let x = c; },
         //    error => console.log(error)
-        //);
+        // );
     }
 
     calcUpperTotal(): void {
         this.game.upperSection.bonus = 0;
-        var subTotal = +this.game.upperSection.ones + +this.game.upperSection.twos + +this.game.upperSection.threes +
+        const subTotal = +this.game.upperSection.ones + +this.game.upperSection.twos + +this.game.upperSection.threes +
             +this.game.upperSection.fours + +this.game.upperSection.fives + +this.game.upperSection.sixes;
 
         if (subTotal >= 63) {
@@ -59,7 +59,7 @@ export class SingleGameDetail implements OnInit {
     }
 
     calcLowerTotal(): void {
-        var subTotal = +this.game.lowerSection.threeOfaKind + +this.game.lowerSection.fourOfaKind + +this.game.lowerSection.fullHouse +
+        const subTotal = +this.game.lowerSection.threeOfaKind + +this.game.lowerSection.fourOfaKind + +this.game.lowerSection.fullHouse +
             +this.game.lowerSection.smallStraight + +this.game.lowerSection.largeStraight + +this.game.lowerSection.yahtzee +
             +this.game.lowerSection.chance + +this.game.lowerSection.bonusYahtzee;
 
