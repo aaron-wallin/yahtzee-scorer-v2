@@ -1,16 +1,5 @@
-/*import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'app works! weeeeee!';
-}*/
-
 import {Component} from '@angular/core';
-import {NgModule} from '@angular/core'
+import {NgModule} from '@angular/core';
 import {Http} from '@angular/http';
 import {RouterLink} from '@angular/router';
 
@@ -24,7 +13,6 @@ import {FirebaseService} from './services/firebase.service';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from './routes';
 import {AuthService} from './user/auth.service';
-
 
 @Component({
     selector: 'app-root',
@@ -47,7 +35,10 @@ import {AuthService} from './user/auth.service';
                         <ul class="nav navbar-nav">
                           <li>
                             <a *ngIf="!authService.isAuthenticated()" [routerLink]="['user/login']">Login</a>
-                            <a *ngIf="authService.isAuthenticated()">WELCOME {{authService.currentUser.firstName}}</a>
+                            <div>                                
+                                <a *ngIf="authService.isAuthenticated()">{{authService.currentUser.firstName}}</a>
+                                <button *ngIf="authService.isAuthenticated()" (click)="logout()">Logout</button>
+                            </div>
                           </li>
                         </ul>
                     </div>
@@ -66,4 +57,8 @@ import {AuthService} from './user/auth.service';
 export class AppComponent {
     pageTitle = 'Yahtzee Challenge';
     constructor(public authService: AuthService) { }
+
+    logout() {
+        this.authService.logoutUser();
+    }
 }

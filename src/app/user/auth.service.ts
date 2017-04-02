@@ -15,24 +15,37 @@ export class AuthService {
             lastName: ''
             };
 
+/*
         this._af.auth.subscribe((auth) => {
             this.authState = auth;
             this.currentUser.userName = this.authState.auth.email;
             this.currentUser.firstName = this.authState.auth.email;
             this.currentUser.id = this.authState.auth.uid;
         });
+        */
     }
 
     loginUser(userName: string, password: string) {
+        this._af.auth.login({ email: userName, password: password }).then((val) => {
+            this.authState = val;
+            this.currentUser.userName = val.auth.email;
+            this.currentUser.firstName = val.auth.email;
+            this.currentUser.id = val.auth.uid;
+            }).catch((err) => alert(err));
         /*
-        this.currentUser = {
-            id: 'xxx',
-            userName: userName,
-            firstName: 'test',
-            lastName: 'user'
-            };
+        .then((a: FirebaseAuthState) => {
+            this.authState = a;
+            this.currentUser.id = a.auth.uid;
+            this.currentUser.userName = a.auth.email;
+            this.currentUser.firstName = a.auth.email;
+            this.currentUser.lastName = a.auth.email;
+            })
+        .catch(error => console.log(error));
         */
-        this._af.auth.login({ email: userName, password: password }).catch(error => console.log(error));
+    }
+
+    logoutUser() {
+        this._af.auth.logout();
     }
 
     isAuthenticated() {
