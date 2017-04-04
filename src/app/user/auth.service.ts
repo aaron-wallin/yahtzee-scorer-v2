@@ -1,19 +1,23 @@
-import {Injectable} from '@angular/core';
-import {IUser} from './user.model';
-import {AngularFire, FirebaseAuthState} from 'angularfire2';
+import { Injectable } from '@angular/core';
+import { IUser } from './user.model';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
     currentUser: IUser;
     authState: FirebaseAuthState;
 
-    constructor(private _af: AngularFire) {
+    constructor(private _af: AngularFire,
+                private router: Router) {
         this.currentUser = {
             id: null,
             userName: '',
             firstName: '',
             lastName: ''
             };
+
+        
 
 /*
         this._af.auth.subscribe((auth) => {
@@ -25,13 +29,17 @@ export class AuthService {
         */
     }
 
-    loginUser(userName: string, password: string) {
+    loginUser(userName: string, password: string, returnUrl: string) {
         this._af.auth.login({ email: userName, password: password }).then((val) => {
             this.authState = val;
             this.currentUser.userName = val.auth.email;
             this.currentUser.firstName = val.auth.email;
             this.currentUser.id = val.auth.uid;
-            }).catch((err) => alert(err));
+
+            this.router.navigate([returnUrl || '/']);
+
+        }).catch((err) => alert(err));
+
         /*
         .then((a: FirebaseAuthState) => {
             this.authState = a;

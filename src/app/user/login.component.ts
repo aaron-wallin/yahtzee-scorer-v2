@@ -1,15 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 import {AuthService} from './auth.service';
 
 @Component({
     templateUrl: './login.component.html'
 })
 
-export class LoginComponent {
-    constructor(private authService: AuthService) { }
+export class LoginComponent implements OnInit {
+    returnUrl: string;
+
+    constructor(private authService: AuthService,
+                private route: ActivatedRoute) { }
+
+    ngOnInit() {
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
 
     login(formValues) {
-        this.authService.loginUser(formValues.userName, formValues.password);
+        this.authService.loginUser(formValues.userName, formValues.password, this.returnUrl);
     }
 }
 

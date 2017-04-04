@@ -14,6 +14,7 @@ import { AuthService } from './user/auth.service';
 import { appRoutes } from './routes';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { environment } from '../environments/environment';
+import { AuthGuard } from './authguard.component';
 
 const myFirebaseConfig = {
   apiKey: 'AIzaSyDMHOTkcH6poblzQfi8SpreHMLm52Hqpl4',
@@ -43,7 +44,8 @@ const myFirebaseAuthConfig = {
     SingleGameDetail,
     ChallengeListComponent ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap:    [ AppComponent ]
 })
