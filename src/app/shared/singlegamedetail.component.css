@@ -1,8 +1,18 @@
-div.input-group-addon {
-    width: 100px; 
+.input-group-addon {
+    min-width: 75px; 
     text-align: right;
 }
 
 input.form-control {
     width: 75px;
+}
+
+.textContainer span {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.textContainer { 
+    height: 100%; 
+    line-height: 100%;
 }
