@@ -5,7 +5,7 @@ import {Router, ROUTER_CONFIGURATION, Routes, RouterModule} from '@angular/route
 import {NewChallengeComponent} from './new-challenge.component';
 import {ChallengeListComponent} from './challenge-list.component';
 import {ChallengeDetailComponent} from './challenge-detail.component';
-import {SingleGameDetail} from './single-game-detail.component';
+import {SingleGameDetailComponent} from './single-game-detail.component';
 
 @Component({
     selector: 'challenges-root',

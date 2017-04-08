@@ -8,6 +8,8 @@ import {AuthService} from './auth.service';
 
 export class LoginComponent implements OnInit {
     returnUrl: string;
+    userName: string;
+    password: string;
 
     constructor(private authService: AuthService,
                 private route: ActivatedRoute) { }
@@ -17,6 +19,7 @@ export class LoginComponent implements OnInit {
     }
 
     login(formValues) {
+        console.log(formValues);
         this.authService.loginUser(formValues.userName, formValues.password, this.returnUrl);
     }
 }

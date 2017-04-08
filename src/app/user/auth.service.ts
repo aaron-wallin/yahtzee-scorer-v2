@@ -30,7 +30,11 @@ export class AuthService {
     }
 
     loginUser(userName: string, password: string, returnUrl: string) {
-        this._af.auth.login({ email: userName, password: password }).then((val) => {
+        this._af.auth.login(
+            {
+                email: userName,
+                password: password
+            }).then((val) => {
             this.authState = val;
             this.currentUser.userName = val.auth.email;
             this.currentUser.firstName = val.auth.email;

@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NewChallengeComponent } from './home/new-challenge.component';
 import { ChallengesComponent } from './home/challenges.component';
 import { ChallengeDetailComponent } from './home/challenge-detail.component';
-import { SingleGameDetail } from './home/single-game-detail.component';
+import { SingleGameDetailComponent } from './home/single-game-detail.component';
 import { ChallengeListComponent } from './home/challenge-list.component';
 import { AuthService } from './user/auth.service';
 import { appRoutes } from './routes';
@@ -41,7 +41,7 @@ const myFirebaseAuthConfig = {
     NewChallengeComponent,
     ChallengesComponent,
     ChallengeDetailComponent,
-    SingleGameDetail,
+    SingleGameDetailComponent,
     ChallengeListComponent ],
   providers: [
     AuthService,

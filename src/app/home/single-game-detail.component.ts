@@ -9,13 +9,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 
 @Component({
-    selector: 'yz-singlegame',
+    selector: 'app-singlegamedetail',
     templateUrl: '../home/single-game-detail.component.html',
     providers: [FirebaseService],
     styleUrls: ['../shared/singlegamedetail.component.css']
 })
 
-export class SingleGameDetail implements OnInit {
+export class SingleGameDetailComponent implements OnInit {
     pageTitle = 'Game';
     @Input() game: Game = new Game('');
     errorWarningMessage = '';
@@ -38,30 +38,37 @@ export class SingleGameDetail implements OnInit {
 
     saveGame(): void {
         this._firebaseService.saveSingleGame(this.game);
-        // this._firebaseService.saveSingleGame(this.game).subscribe(
-        //    c => { let x = c; },
-        //    error => console.log(error)
-        // );
     }
 
     calcUpperTotal(): void {
         this.game.upperSection.bonus = 0;
-        const subTotal = +this.game.upperSection.ones + +this.game.upperSection.twos + +this.game.upperSection.threes +
-            +this.game.upperSection.fours + +this.game.upperSection.fives + +this.game.upperSection.sixes;
+        const subTotal = +this.game.upperSection.ones +
+                         +this.game.upperSection.twos +
+                         +this.game.upperSection.threes +
+                         +this.game.upperSection.fours +
+                         +this.game.upperSection.fives +
+                         +this.game.upperSection.sixes;
 
         if (subTotal >= 63) {
             this.game.upperSection.bonus = 35;
         }
 
-        this.game.upperSection.total = +subTotal + +this.game.upperSection.bonus;
-        this.game.grandTotal = +this.game.upperSection.total + +this.game.lowerSection.total;
+        this.game.upperSection.total = +subTotal +
+                                       +this.game.upperSection.bonus;
+        this.game.grandTotal = +this.game.upperSection.total +
+                               +this.game.lowerSection.total;
         this.internalSaveGame();
     }
 
     calcLowerTotal(): void {
-        const subTotal = +this.game.lowerSection.threeOfaKind + +this.game.lowerSection.fourOfaKind + +this.game.lowerSection.fullHouse +
-            +this.game.lowerSection.smallStraight + +this.game.lowerSection.largeStraight + +this.game.lowerSection.yahtzee +
-            +this.game.lowerSection.chance + +this.game.lowerSection.bonusYahtzee;
+        const subTotal = this.game.lowerSection.threeOfaKind +
+                        this.game.lowerSection.fourOfaKind +
+                        this.game.lowerSection.fullHouse +
+                        this.game.lowerSection.smallStraight +
+                        this.game.lowerSection.largeStraight +
+                        this.game.lowerSection.yahtzee +
+                        this.game.lowerSection.chance +
+                        this.game.lowerSection.bonusYahtzee;
 
         this.game.lowerSection.total = +subTotal;
         this.game.grandTotal = +this.game.upperSection.total + +this.game.lowerSection.total;

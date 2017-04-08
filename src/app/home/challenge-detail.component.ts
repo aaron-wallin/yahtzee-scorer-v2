@@ -3,7 +3,7 @@ import {Challenge} from '../models/challenge';
 import {Game} from '../models/game';
 import {FirebaseService} from '../services/firebase.service';
 import {Routes, ActivatedRoute, Router} from '@angular/router';
-import {SingleGameDetail} from '../home/single-game-detail.component';
+import {SingleGameDetailComponent} from '../home/single-game-detail.component';
 
 @Component({
     templateUrl: '../home/challenge-detail.component.html',
