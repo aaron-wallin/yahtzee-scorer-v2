@@ -9,36 +9,45 @@
             <legend>UPPER SECTION</legend>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">ONES</span>
-                <input type="text" class="form-control input-sm" id="usOnes" placeholder="ONES" name="ones" [(ngModel)]="game.upperSection.ones" (ngModelChange)="calcUpperTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                       id="usOnes" placeholder="ONES" name="ones" 
+                       [(ngModel)]="game.upperSection.ones" 
+                       (ngModelChange)="calcUpperTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">TWOS</div>
-                <input type="text" class="form-control input-sm" id="usTwos"  placeholder="TWOS" name="twos" [(ngModel)]="game.upperSection.twos" (ngModelChange)="calcUpperTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                        id="usTwos"  placeholder="TWOS" name="twos" 
+                        [(ngModel)]="game.upperSection.twos" 
+                        (ngModelChange)="calcUpperTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">THREES</span>
-                <input type="text" class="form-control input-sm" id="usThrees" placeholder="THREES" name="threes" [(ngModel)]="game.upperSection.threes" (ngModelChange)="calcUpperTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                        id="usThrees" placeholder="THREES" name="threes" 
+                        [(ngModel)]="game.upperSection.threes" 
+                        (ngModelChange)="calcUpperTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">FOURS</div>
-                <input type="text" class="form-control input-sm" id="usFours" placeholder="FOURS" name="fours" [(ngModel)]="game.upperSection.fours" (ngModelChange)="calcUpperTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                        id="usFours" placeholder="FOURS" name="fours" 
+                        [(ngModel)]="game.upperSection.fours" 
+                        (ngModelChange)="calcUpperTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">FIVES</div>
-                <input type="text" class="form-control input-sm" id="usFives" placeholder="FIVES" name="fives" [(ngModel)]="game.upperSection.fives" (ngModelChange)="calcUpperTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                        id="usFives" placeholder="FIVES" name="fives" 
+                        [(ngModel)]="game.upperSection.fives" 
+                        (ngModelChange)="calcUpperTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">SIXES</div>
                 <input type="text" class="form-control input-sm" 
-                id="usSixes" placeholder="SIXES" name="sixes" 
-                [(ngModel)]="game.upperSection.sixes" 
-                (ngModelChange)="calcUpperTotal($event)"
-                />
+                        id="usSixes" placeholder="SIXES" name="sixes" 
+                        [(ngModel)]="game.upperSection.sixes" 
+                        (ngModelChange)="calcUpperTotal()" />
             </div>
             <div class="input-group input-group-sm textContainer">
                 <span class="input-group-addon">BONUS</span>
@@ -55,47 +64,63 @@
 
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">3 KIND</div>
-                <input type="text" class="form-control input-sm" id="ls3OfAKind" placeholder="3 OF A KIND" name="3_of_kind" [(ngModel)]="game.lowerSection.threeOfaKind"
-                    (ngModelChange)="calcLowerTotal($event)" />
+                <input type="text" class="form-control input-sm" 
+                        id="ls3OfAKind" placeholder="3 OF A KIND" name="3_of_kind" 
+                        [(ngModel)]="game.lowerSection.threeOfaKind"
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
 
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">4 KIND</div>
-                <input type="text" class="form-control input-sm" id="us4OfAKind" placeholder="4 OF A KIND" name="4_of_kind" [(ngModel)]="game.lowerSection.fourOfaKind"
-                    (ngModelChange)="calcLowerTotal($event)" />
+                <input type="text" class="form-control input-sm" 
+                        id="us4OfAKind" placeholder="4 OF A KIND" name="4_of_kind" 
+                        [(ngModel)]="game.lowerSection.fourOfaKind"
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
 
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">FULL HSE</div>
-                <input type="text" class="form-control input-sm" id="usThrees" placeholder="FULL HOUSE" name="fullHouse" [(ngModel)]="game.lowerSection.fullHouse"
-                    (ngModelChange)="calcLowerTotal($event)" />
+                <input type="text" class="form-control input-sm" 
+                        id="usThrees" placeholder="FULL HOUSE" name="fullHouse" 
+                        [(ngModel)]="game.lowerSection.fullHouse"
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
 
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">SM STRT</div>
-                <input type="text" class="form-control input-sm" id="usFours" placeholder="SM STRAIGHT" name="smallStraight" [(ngModel)]="game.lowerSection.smallStraight"
-                    (ngModelChange)="calcLowerTotal($event)" />
+                <input type="text" class="form-control input-sm" 
+                        id="usFours" placeholder="SM STRAIGHT" name="smallStraight" 
+                        [(ngModel)]="game.lowerSection.smallStraight"
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
 
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">LG STRT</div>
-                <input type="text" class="form-control input-sm" id="usFives" placeholder="LG STRAIGHT" name="largeStraight" [(ngModel)]="game.lowerSection.largeStraight"
-                    (ngModelChange)="calcLowerTotal($event)" />
+                <input type="text" class="form-control input-sm" 
+                        id="usFives" placeholder="LG STRAIGHT" name="largeStraight" 
+                        [(ngModel)]="game.lowerSection.largeStraight"
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">YAHTZEE</div>
-                <input type="text" class="form-control input-sm" id="usSixes" placeholder="YAHTZEE" name="yahtzee" [(ngModel)]="game.lowerSection.yahtzee" (ngModelChange)="calcLowerTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                        id="usSixes" placeholder="YAHTZEE" name="yahtzee" 
+                        [(ngModel)]="game.lowerSection.yahtzee" 
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">CHANCE</div>
-                <input type="text" class="form-control input-sm" id="usSixes" placeholder="CHANCE" name="chance" [(ngModel)]="game.lowerSection.chance" (ngModelChange)="calcLowerTotal($event)"
-                />
+                <input type="text" class="form-control input-sm" 
+                        id="usSixes" placeholder="CHANCE" name="chance" 
+                        [(ngModel)]="game.lowerSection.chance" 
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
             <div class="input-group input-group-sm">
                 <div class="input-group-addon">BONUS</div>
-                <input type="text" class="form-control input-sm" id="usSixes" placeholder="BONUS YAHTZEE" name="bonusYahtzee" [(ngModel)]="game.lowerSection.bonusYahtzee"
-                    (ngModelChange)="calcLowerTotal($event)" />
+                <input type="text" class="form-control input-sm" 
+                        id="usSixes" placeholder="BONUS YAHTZEE" name="bonusYahtzee" 
+                        [(ngModel)]="game.lowerSection.bonusYahtzee"
+                        (ngModelChange)="calcLowerTotal()" />
             </div>
 
             <div class="input-group input-group-sm textContainer">

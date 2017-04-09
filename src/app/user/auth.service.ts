@@ -10,6 +10,7 @@ export class AuthService {
 
     constructor(private _af: AngularFire,
                 private router: Router) {
+
         this.currentUser = {
             id: null,
             userName: '',
@@ -17,21 +18,16 @@ export class AuthService {
             lastName: ''
             };
 
-        
-
-/*
         this._af.auth.subscribe((auth) => {
             this.authState = auth;
             this.currentUser.userName = this.authState.auth.email;
             this.currentUser.firstName = this.authState.auth.email;
             this.currentUser.id = this.authState.auth.uid;
         });
-        */
     }
 
     loginUser(userName: string, password: string, returnUrl: string) {
-        this._af.auth.login(
-            {
+        this._af.auth.login( {
                 email: userName,
                 password: password
             }).then((val) => {
@@ -43,21 +39,19 @@ export class AuthService {
             this.router.navigate([returnUrl || '/']);
 
         }).catch((err) => alert(err));
-
-        /*
-        .then((a: FirebaseAuthState) => {
-            this.authState = a;
-            this.currentUser.id = a.auth.uid;
-            this.currentUser.userName = a.auth.email;
-            this.currentUser.firstName = a.auth.email;
-            this.currentUser.lastName = a.auth.email;
-            })
-        .catch(error => console.log(error));
-        */
     }
 
     logoutUser() {
-        this._af.auth.logout();
+        this._af.auth.logout().then((val) => {
+            this.authState = null;
+            this.currentUser = {
+                id: null,
+                userName: '',
+                firstName: '',
+                lastName: ''
+            };
+            this.router.navigate(['user/login']).catch((err) => alert(err));
+        });
     }
 
     isAuthenticated() {

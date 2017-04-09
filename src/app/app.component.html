@@ -25,7 +25,7 @@
           <a *ngIf="!authService.isAuthenticated()" [routerLink]="['user/login']">Login</a>
           <div>
             <a *ngIf="authService.isAuthenticated()">{{authService.currentUser.firstName}}</a>
-            <button *ngIf="authService.isAuthenticated()" (click)="logout()" class="btn btn-primary btn-xs">Logout</button>
+            <button *ngIf="authService.isAuthenticated()" (click)="logout()" class="btn btn-primary btn-xs">Logout</button>            
           </div>
         </li>
       </ul>
