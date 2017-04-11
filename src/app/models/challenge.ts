@@ -15,7 +15,7 @@ export class Challenge {
         this.gameArray = [];
     }
 
-    addPlayer(name: string) : void {
+    addPlayer(name: string): void {
         if(name.length > 0) {
             this.players.push(name);
         }
@@ -26,7 +26,7 @@ export class Challenge {
 
         Object.keys(this.games).forEach(
             challengeId => {
-            var value = this.games[challengeId];
+            const value = this.games[challengeId];
             this.gameArray.push(value);
         });
 
