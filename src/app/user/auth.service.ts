@@ -15,7 +15,7 @@ export class AuthService {
             id: null,
             userName: '',
             firstName: '',
-            lastName: ''
+            lastName: '',
             };
 
         this._af.auth.subscribe((auth) => {
@@ -23,6 +23,8 @@ export class AuthService {
             this.currentUser.userName = this.authState.auth.email;
             this.currentUser.firstName = this.authState.auth.email;
             this.currentUser.id = this.authState.auth.uid;
+
+            this.router.navigate(['/']);
         });
     }
 
