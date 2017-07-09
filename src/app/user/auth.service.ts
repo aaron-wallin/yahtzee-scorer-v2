@@ -16,21 +16,22 @@ export class AuthService {
     constructor(private _af: AngularFireAuth,
                 private router: Router) {
 
-        this.currentUser = {
-            id: null,
-            userName: '',
-            firstName: '',
-            lastName: ''
-        };
+        this.user = _af.authState;
 
-        /*
-        this._af.auth.subscribe((auth) => {
-            this.authState = _af.getAuth();
-            this.currentUser.userName = this.authState.currentUser.email;
-            this.currentUser.firstName = this.authState.currentUser.email;
-            this.currentUser.id = this.authState.currentUser.uid;
+        this.currentUser = {
+                id: null,
+                userName: '',
+                firstName: '',
+                lastName: ''
+            };
+
+        this.user.subscribe((auth) => {
+            this.currentUser.userName = this._af.auth.currentUser.email;
+            this.currentUser.firstName = this._af.auth.currentUser.email;
+            this.currentUser.id = this._af.auth.currentUser.uid;
+
+            this.router.navigate(['/']);
         });
-        */
     }
 
     loginUser(userName: string, password: string, returnUrl: string) {
@@ -61,7 +62,10 @@ export class AuthService {
     }
 
     isAuthenticated() {
-        if (this.authState == null || this.authState == null) { return false; }
-        return !!this.authState.currentUser.uid;
+        if (this._af == null ||
+            this._af.auth == null ||
+            this._af.auth.currentUser == null) { return false; }
+
+        return !!this._af.auth.currentUser.uid;
     }
 }

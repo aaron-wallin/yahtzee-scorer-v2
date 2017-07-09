@@ -61,14 +61,14 @@ export class SingleGameDetailComponent implements OnInit {
     }
 
     calcLowerTotal(): void {
-        const subTotal = this.game.lowerSection.threeOfaKind +
-                        this.game.lowerSection.fourOfaKind +
-                        this.game.lowerSection.fullHouse +
-                        this.game.lowerSection.smallStraight +
-                        this.game.lowerSection.largeStraight +
-                        this.game.lowerSection.yahtzee +
-                        this.game.lowerSection.chance +
-                        this.game.lowerSection.bonusYahtzee;
+        const subTotal = +this.game.lowerSection.threeOfaKind +
+                        +this.game.lowerSection.fourOfaKind +
+                        +this.game.lowerSection.fullHouse +
+                        +this.game.lowerSection.smallStraight +
+                        +this.game.lowerSection.largeStraight +
+                        +this.game.lowerSection.yahtzee +
+                        +this.game.lowerSection.chance +
+                        +this.game.lowerSection.bonusYahtzee;
 
         this.game.lowerSection.total = +subTotal;
         this.game.grandTotal = +this.game.upperSection.total + +this.game.lowerSection.total;
