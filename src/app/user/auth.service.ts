@@ -35,18 +35,14 @@ export class AuthService {
 
     loginUser(userName: string, password: string, returnUrl: string) {
         this._af.auth.signInWithEmailAndPassword(userName, password).then((success) => {
-
-            //console.log(success);
             console.log(this._af.auth.currentUser.uid);
             console.log(this._af.auth.currentUser.email);
 
-            //this.user = this._af.authState;
             this.currentUser.userName = this._af.auth.currentUser.email;
             this.currentUser.firstName = this._af.auth.currentUser.email;
             this.currentUser.id = this._af.auth.currentUser.uid;
-            
+
             this.router.navigate([returnUrl || '/']);
-            
 
         }).catch((err) => alert(err));
     }

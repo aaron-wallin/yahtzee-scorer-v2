@@ -22,20 +22,4 @@ export class Game {
                              bonusYahtzee: 0, chance: 0, total: 0};
         this.gameId = '';
     }
-
-    /*
-    calculateUpperSectionTotal = (): void {
-        this.upperSection.bonus = 0;
-        const subTotal = this.upperSection.ones + this.upperSection.twos +
-                       this.upperSection.threes + this.upperSection.fours +
-                        this.upperSection.fives + this.upperSection.sixes;
-
-        if (subTotal >= 63)
-        {
-            this.upperSection.bonus = 35;
-        }
-
-        this.upperSection.total = subTotal + this.upperSection.bonus;
-    }
-    */
 }
