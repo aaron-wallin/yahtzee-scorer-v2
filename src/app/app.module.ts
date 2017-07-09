@@ -12,9 +12,11 @@ import { SingleGameDetailComponent } from './home/single-game-detail.component';
 import { ChallengeListComponent } from './home/challenge-list.component';
 import { AuthService } from './user/auth.service';
 import { appRoutes } from './routes';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AuthGuard } from './authguard.component';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 const myFirebaseConfig = {
   apiKey: 'AIzaSyDMHOTkcH6poblzQfi8SpreHMLm52Hqpl4',
@@ -24,10 +26,12 @@ const myFirebaseConfig = {
   messagingSenderId: '342189699352'
 };
 
+/*
 const myFirebaseAuthConfig = {
-  provider: AuthProviders.Password,
-  method: AuthMethods.Password
+  provider: firebase.auth.EmailAuthProvider,
+  method: firebase.auth.EmailAuthProvider.PROVIDER_ID
 };
+*/
 
 @NgModule( {
   imports:      [
@@ -35,7 +39,10 @@ const myFirebaseAuthConfig = {
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes) ,
-    AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)],
+    AngularFireModule.initializeApp(myFirebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
+    ],
   declarations: [
     AppComponent,
     NewChallengeComponent,

@@ -4,19 +4,19 @@ import {Http, Response} from '@angular/http';
 import {Challenge} from '../models/challenge';
 import {Game} from '../models/game';
 
-import {AngularFire} from 'angularfire2';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Injectable()
 export class FirebaseService {
 
     private _baseUrl = 'https://yahtzeechallenge.firebaseio.com';
 
-    constructor(private _http: Http, private _af: AngularFire) {}
+    constructor(private _http: Http, private _af: AngularFireDatabase) {}
 
     setChallenge(challenge: Challenge) {
         const body = JSON.stringify(challenge);
         const jsonObj = JSON.parse(body);
-        this._af.database.object('challenges/' + challenge.challengeId).set(jsonObj);
+        this._af.object('challenges/' + challenge.challengeId).set(jsonObj);
 
         /*
         const body = JSON.stringify(challenge);
@@ -26,7 +26,7 @@ export class FirebaseService {
     }
 
     getChallenge(challengeId: string): Observable<Challenge> {
-        return this._af.database.object('challenges/' + challengeId);
+        return this._af.object('challenges/' + challengeId);
 
         /*
         return this._http.get(this._baseUrl + '/challenges/' + challengeId  + '/.json')
@@ -35,7 +35,7 @@ export class FirebaseService {
     }
 
     getChallenges(): Observable<Challenge[]> {
-        return this._af.database.list('challenges');
+        return this._af.list('challenges');
 
         /*
         return this._http.get(this._baseUrl + '/challenges.json')
@@ -46,7 +46,7 @@ export class FirebaseService {
     }
 
     getGame(challengeId: string, gameId: string): Observable<Game> {
-        return this._af.database.object('challenges/' + challengeId  + '/games/' + gameId);
+        return this._af.object('challenges/' + challengeId  + '/games/' + gameId);
 
         /*
         return this._http.get(this._baseUrl + '/challenges/' + challengeId  + '/games/' + gameId + '/.json')
@@ -57,7 +57,7 @@ export class FirebaseService {
     }
 
     saveSingleGame(game: Game) {
-        this._af.database.object('/challenges/' + game.challengeId + '/games/' + game.gameId).set(game);
+        this._af.object('/challenges/' + game.challengeId + '/games/' + game.gameId).set(game);
 
         /* const body = JSON.stringify(game);
          console.log(body);

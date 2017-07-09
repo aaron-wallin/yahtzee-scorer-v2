@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './user.model';
-import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+
 
 @Injectable()
 export class AuthService {
+    user: Observable<firebase.User>;
     currentUser: IUser;
-    authState: FirebaseAuthState;
+    authState: firebase.auth.Auth;
 
-    constructor(private _af: AngularFire,
+    constructor(private _af: AngularFireAuth,
                 private router: Router) {
 
         this.currentUser = {
@@ -16,33 +21,38 @@ export class AuthService {
             userName: '',
             firstName: '',
             lastName: ''
-            };
+        };
 
+        /*
         this._af.auth.subscribe((auth) => {
-            this.authState = auth;
-            this.currentUser.userName = this.authState.auth.email;
-            this.currentUser.firstName = this.authState.auth.email;
-            this.currentUser.id = this.authState.auth.uid;
+            this.authState = _af.getAuth();
+            this.currentUser.userName = this.authState.currentUser.email;
+            this.currentUser.firstName = this.authState.currentUser.email;
+            this.currentUser.id = this.authState.currentUser.uid;
         });
+        */
     }
 
     loginUser(userName: string, password: string, returnUrl: string) {
-        this._af.auth.login( {
-                email: userName,
-                password: password
-            }).then((val) => {
-            this.authState = val;
-            this.currentUser.userName = val.auth.email;
-            this.currentUser.firstName = val.auth.email;
-            this.currentUser.id = val.auth.uid;
+        this._af.auth.signInWithEmailAndPassword(userName, password).then((success) => {
 
+            //console.log(success);
+            console.log(this._af.auth.currentUser.uid);
+            console.log(this._af.auth.currentUser.email);
+
+            //this.user = this._af.authState;
+            this.currentUser.userName = this._af.auth.currentUser.email;
+            this.currentUser.firstName = this._af.auth.currentUser.email;
+            this.currentUser.id = this._af.auth.currentUser.uid;
+            
             this.router.navigate([returnUrl || '/']);
+            
 
         }).catch((err) => alert(err));
     }
 
     logoutUser() {
-        this._af.auth.logout().then((val) => {
+        this._af.auth.signOut().then((val) => {
             this.authState = null;
             this.currentUser = {
                 id: null,
@@ -55,7 +65,7 @@ export class AuthService {
     }
 
     isAuthenticated() {
-        if (this.authState == null || this.authState.auth == null) { return false; }
-        return !!this.authState.auth.uid;
+        if (this.authState == null || this.authState == null) { return false; }
+        return !!this.authState.currentUser.uid;
     }
 }
