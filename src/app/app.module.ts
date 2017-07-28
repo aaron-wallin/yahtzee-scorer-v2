@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { AuthGuard } from './authguard.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { KeyValuePipe } from './pipes/keyvaluepipe';
 
 const myFirebaseConfig = {
   apiKey: 'AIzaSyDMHOTkcH6poblzQfi8SpreHMLm52Hqpl4',
@@ -49,7 +50,8 @@ const myFirebaseAuthConfig = {
     ChallengesComponent,
     ChallengeDetailComponent,
     SingleGameDetailComponent,
-    ChallengeListComponent ],
+    ChallengeListComponent,
+    KeyValuePipe ],
   providers: [
     AuthService,
     AuthGuard

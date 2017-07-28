@@ -5,7 +5,7 @@ export class Challenge {
     challengeDate: string;
     challengeId: string;
     gameArray: Game[];
-    games: {[gameId: string]: Game;};
+    games: { [gameId: string]: Game; };
     players: string[];
     numberOfGames: number;
 
@@ -16,12 +16,12 @@ export class Challenge {
     }
 
     addPlayer(name: string): void {
-        if(name.length > 0) {
+        if (name.length > 0) {
             this.players.push(name);
         }
     }
 
-    castGamesToArray(): Challenge {
+    public castGamesToArray(): Game[] {
         this.gameArray = [];
 
         Object.keys(this.games).forEach(
@@ -30,6 +30,6 @@ export class Challenge {
             this.gameArray.push(value);
         });
 
-        return this;
+        return this.gameArray;
     }
 }

@@ -8,12 +8,22 @@
                 <thead>
                     <tr class="info">
                         <th>CHALLENGE CODE</th>
+                        <th>RESULTS</th>
                         <th>DATE</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor='let c of challenges'>
                         <td><a [routerLink]="['/challenges', c.challengeId]">{{c.challengeId}}</a></td>
+                        <td>
+                            <table>
+                                <tr *ngFor='let entry of c.games | keyValue'>
+                                    <td>{{entry.value.gameNumber}} ) </td>
+                                    <td> {{entry.value.playerName}} - </td>
+                                    <td> {{entry.value.grandTotal}}</td>
+                                </tr>
+                            </table>
+                        </td>
                         <td>{{c.challengeDate}}</td>
                     </tr>
                 </tbody>

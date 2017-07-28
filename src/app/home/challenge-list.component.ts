@@ -15,7 +15,7 @@ export class ChallengeListComponent implements OnInit {
 
     ngOnInit(): void {
         this._firebaseService.getChallenges().subscribe(
-                c => this.challenges = c,
+                c => { this.challenges = c; },
                 error => console.log('***ERROR ON ngOnInit ChallengeListComponent***:' + error));
     }
 }
