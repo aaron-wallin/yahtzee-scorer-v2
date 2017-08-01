@@ -5,26 +5,27 @@
     <div class="panel-body">
         <div class="table-responsive col-lg-12 container-fluid">
             <table class="table table-striped" *ngIf="challenges && challenges.length">
-                <thead>
-                    <tr class="info">
+                <thead class="thead-inverse">
+                    <tr>
                         <th>CHALLENGE CODE</th>
-                        <th>RESULTS</th>
                         <th>DATE</th>
+                        <th>RESULTS</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor='let c of challenges'>
                         <td><a [routerLink]="['/challenges', c.challengeId]">{{c.challengeId}}</a></td>
+                        <td>{{c.challengeDate}}</td>
                         <td>
-                            <table>
+                            <table class="table table-bordered">
                                 <tr *ngFor='let entry of c.games | keyValue'>
-                                    <td>{{entry.value.gameNumber}} ) </td>
-                                    <td> {{entry.value.playerName}} - </td>
-                                    <td> {{entry.value.grandTotal}}</td>
+                                    <td>{{entry.value.gameNumber}} )</td>
+                                    <td> {{entry.value.playerName}}</td>
+                                    <td style="text-align: right;"> {{entry.value.grandTotal}}</td>
                                 </tr>
                             </table>
                         </td>
-                        <td>{{c.challengeDate}}</td>
+                        
                     </tr>
                 </tbody>
             </table>
